@@ -1,0 +1,18 @@
+
+	Gnn_Project_QualSon		(Mesure de la qualité sonore)
+
+1 - Dans chaque projet il faut modifier le fichier "OLedAffi_MyLogo.h" pour ajouter
+    l'image bitmap du logo du groupe entre les deux lignes "{"  et "}" 
+	et enlever le commentaire de la ligne "//AOLED_DisplayImage((char*)Gnn_myLogo);"
+	dans la fonction "void setup()" dans le fichier "Gnn_Project_QualSon.ino"
+
+2 - Il faut modifier le fichier "GSensor_MicroQual.ino" pour faire la lecture
+    du capteur du projet et appliquer l'algo de l'APP Signal pour mesurer la puissance et la 
+	frequence du signal reçu.
+	Dans ce fichier, il faut lire et suivre les commentaires.
+	La carte TIVA possede 32 KB de RAM. DOnc, il faut limiter les buffers des échantillons
+	à 2500/3000 max.
+	Avec cette limitation, il faut limiter la fréquence d'echantillonnage à 10 KHz.
+
+3 - Vu la faible capacité memeoire de la TIVA, le projet qualité sonore utilisera le
+	filtrage pour trouver le rapport de puissance pour les frequence superieures à 2 KHz.
