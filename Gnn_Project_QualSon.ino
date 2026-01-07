@@ -77,4 +77,13 @@ unsigned long findLargePrimeNumber(){
     if (nb%2 == 0) break;
     bool cond = true;
     for(long i = 3; i < sqrt(nb); i+=2){
+      if(nb%i == 0){
+        cond = false;
+        break;
+      }
+      if(cond) break;
+    }
+  }
+  return nb;
+  
 }
