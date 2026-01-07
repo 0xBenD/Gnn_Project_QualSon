@@ -7,6 +7,7 @@
 #include    "OLedAffi_MyLogo.h"
 
 
+
 void setup()
 //----------------------------------------------------
 //----------------------------------------------------
@@ -58,4 +59,22 @@ void loop()
     }
 sortie:
     delay(1000);
+}
+
+
+
+void RSA(){
+  unsigned long p, q;
+  p = findLargePrimeNumber();
+  do q = findLargePrimeNumber(); while(p == q);
+}
+
+unsigned long findLargePrimeNumber(){
+  randomSeed(analogRead(5));
+  long nb;
+  while (true){
+    nb = random(pow(2,14),pow(2,15));
+    if (nb%2 == 0) break;
+    bool cond = true;
+    for(long i = 3; i < sqrt(nb); i+=2){
 }
