@@ -120,8 +120,8 @@ void    AOLED_DisplayTexte(int x, int y, char *texte)
     }
 }
 
-const char Ecole[] = "mlkagez";
-const char Numrq[] = "m ghzkef";
+const char Ecole[] = "";
+const char Numrq[] = "";
 
 void    AOLED_AffiLogoIsep(void)
 //-------------------------------------------------------------
