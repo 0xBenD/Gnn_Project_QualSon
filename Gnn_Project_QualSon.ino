@@ -64,12 +64,12 @@ sortie:
 
 
 void RSA(){
-  unsigned long p, q, e;
+  unsigned long p, q, e, r, inverse, v;
   p = findLargePrimeNumber();
   do q = findLargePrimeNumber(); while(p == q);
   long n = p * q;
   do e = findLargePrimeNumber(); while(((p-1)*(q-1)) % e ==0);
-  
+  extendedEuclide(e,(p-1)*(q-1), &r, &inverse, &v);
 }
 
 unsigned long findLargePrimeNumber(){
@@ -88,4 +88,21 @@ unsigned long findLargePrimeNumber(){
     }
   }
   return nb; 
+}
+
+
+void extendedEuclide(unsigned long a, unsigned long b, unsigned long* r, long* u, long* v){
+  r = a;
+  u = 1;
+  v = 0;
+  unsigned long rs = b, us = 0, vs = 1, q = 0;
+  while(rs != 0){
+    q = r/rs;
+    r = rs;
+    u = us;
+    v = vs;
+    rs = r - q*rs;
+    us = u - q*us;
+    vs = v - q*vs;
+  }
 }
