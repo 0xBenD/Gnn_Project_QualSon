@@ -64,9 +64,12 @@ sortie:
 
 
 void RSA(){
-  unsigned long p, q;
+  unsigned long p, q, e;
   p = findLargePrimeNumber();
   do q = findLargePrimeNumber(); while(p == q);
+  long n = p * q;
+  do e = findLargePrimeNumber(); while(((p-1)*(q-1)) % e ==0);
+  
 }
 
 unsigned long findLargePrimeNumber(){
@@ -84,6 +87,5 @@ unsigned long findLargePrimeNumber(){
       if(cond) break;
     }
   }
-  return nb;
-  
+  return nb; 
 }
