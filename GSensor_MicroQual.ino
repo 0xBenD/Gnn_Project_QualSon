@@ -147,7 +147,7 @@ float Power_Inst[SIZE_BUFF];
   return power;
 }
 
-const float h[LEN_K] = {
+const float h[151] = {
   -0.003271630291508422633262043177637679037,
 0.016691072074447890066783983797904511448,
 -0.010308430392768215891341476719844649779,
@@ -300,36 +300,21 @@ const float h[LEN_K] = {
 0.016691072074447890066783983797904511448,
 -0.003271630291508422633262043177637679037
 }
-short myPowerFiltrage(void)
+short myPowerFiltrage(float filteredSignal[])
 //------------------------------------------------------------------------------
 //  compute signal frequency Power : par Filtrage
 //------------------------------------------------------------------------------
-{
-  short freqSig;
+{ 
 
-  short freqSig = 0;
-  float pwr_sum = 0.0f; 
-  
-  for (int n = LEN_K - 1; n < SIZE_BUFF; n++) //LEN_K - 1 means that at index n you access Buffer_Sample[n - 1]
-  {
-    float y = 0.0f; //filter signal output at time n
-
-    for (int i = 0; i < LEN_K; i++)
+    for (int n = 0; n < SIZE_BUFF; n++)
     {
-      y += h[i] * Buffer_Sample[n - i]; //FIR filter equation with h[i] the FIR filter coeff, Buffer_Sample[] the input signal, and y the filtered output
-    }
-
-  pwr_sum += y * y; //pwr accumulation basically squares the filtered sample and adds it to pwr_sum
-  }
-
-  float powerHF = pwr_sum / (SIZE_BUFF - (LEN_K - 1)); //pwr_sum divided by the number of y[n] values computed -> mean power of the filtered signal 
-
-  if (powerHF > LOW_LEVEL)
-  {
-    freqSig = 1; //detects if power is too low
-  }
-  
-  return freqSig;
+      for (int i = 0; i < 151; i++)
+      {
+      if (n - i < 0) break; 
+      filteredSignal[n] += h[i] * Buffer_Sample[n - i]; //FIR filter equation with h[i] the FIR filter coeff, Buffer_Sample[] the input signal, and y the filtered output
+      }
+    }    
+    
 }
 // ##TAG##3 end
 
