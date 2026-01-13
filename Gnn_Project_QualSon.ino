@@ -43,6 +43,10 @@ void loop()
 //----------------------------------------------------
 //----------------------------------------------------
 {
+  
+    char output[9];
+    itoa('1', output, 2);
+    Serial.print(output);
 	short  etat, SigPenible;
 
     etat = digitalRead(PIN_BOUTON);
@@ -59,4 +63,16 @@ void loop()
     }
 sortie:
     delay(1000);
+}
+
+
+// Source - https://stackoverflow.com/a
+// Posted by Salvatore Previti, modified by community. See post 'Timeline' for change history
+// Retrieved 2026-01-12, License - CC BY-SA 3.0
+
+void printbinchar(char character)
+{
+    char output[9];
+    itoa(character, output, 2);
+    printf("%s\n", output);
 }

@@ -301,8 +301,8 @@ const float h[151] = {
 -0.003271630291508422633262043177637679037
 };
 
-}
-short myPowerFiltrage(float filteredSignal[])
+
+void myPowerFiltrage(float filteredSignal[], float Buffer_Sample[])
 
 //------------------------------------------------------------------------------
 //  compute signal frequency Power : par Filtrage
