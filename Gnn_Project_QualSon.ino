@@ -44,11 +44,12 @@ void loop()
 //----------------------------------------------------
 {
   
-    char output[9];
-    itoa('1', output, 2);
-    Serial.print(output);
+   
 	short  etat, SigPenible;
 
+    char password[19] = "5N6ctfYVVlod2QFwp";
+    //char password[19] = "DeZLO2rqdvgyUzWp"; to check if XOR works
+    char key[19] = "DeZLO2rqdvgyUzWpV";
     etat = digitalRead(PIN_BOUTON);
     if (etat == 0) {        // bouton appuye
         while (1) {
@@ -57,22 +58,14 @@ void loop()
                 break;
         }
         SigPenible = Sensor_Measure();
+        char InfoSig[3] ="0";
+        //char InfoSig[3] ="V";
         // afficher les resultats
 		//  SigPenible = -1 -> Pas de signal
 		// SigPenible = 0 => acceptable, ( > 0 ) => niveau de penibilite
+    strcat(password,InfoSig);
+    for(int i = 0; i < 19; i++) password[i] = password[i]^key[i];
+    Serial1.print(password);
     }
-sortie:
     delay(1000);
-}
-
-
-// Source - https://stackoverflow.com/a
-// Posted by Salvatore Previti, modified by community. See post 'Timeline' for change history
-// Retrieved 2026-01-12, License - CC BY-SA 3.0
-
-void printbinchar(char character)
-{
-    char output[9];
-    itoa(character, output, 2);
-    printf("%s\n", output);
 }
